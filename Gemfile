@@ -89,3 +89,4 @@ gem "carrierwave", ">= 3.0.0.rc", "< 4.0"
 gem "chunky_png"
 
 gem "prawn"
+gem "matrix", "~> 0.4"
