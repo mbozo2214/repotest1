@@ -1,0 +1,91 @@
+@import 'bulma';
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.navbar {
+  background-color: #E1F5FE; 
+  border-bottom: 3px solid #FFFFFF; 
+}
+
+.navbar-brand {
+  .navbar-item {
+    font-size: 20px; 
+    font-weight: bold; 
+    color: #FF6B6B; 
+    font-family: 'Lato';
+    &:hover {
+      color: #FFC107; 
+    }
+  }
+}
+.navbar-menu {
+  .navbar-start {
+    li {
+      list-style-type: none; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+      height: 100%; 
+      
+      .navbar-item {
+        font-size: 16px; 
+        color: #333333; 
+        font-family: 'Lato';
+        
+        &:hover {
+          color: #FFC107; 
+          background-color: #E1F5FE;
+        }
+      }
+    }
+  }
+  
+  .navbar-end {
+    li {
+      list-style-type: none; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      height: 100%; 
+    }
+    
+    .navbar-item {
+      font-size: 16px; 
+      color: #333333; 
+      font-family: 'Lato';
+      &:hover {
+        color: #FFC107; 
+        background-color: #E1F5FE; 
+      }
+    }
+  }
+}
+
+.notice {
+  background-color: #E1F5FE;
+  padding: 10px; 
+}
+
+.alert {
+  background-color: #fdd; 
+  padding: 10px; 
+}
+
+.navbar-item.button-to-cerrar-sesion {
+  background-color: #E1F5FE;
+  border: none;
+}
+
+.chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #FF6B6B;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.chat-button:hover {
+  background-color: #FF6B6B;
+}

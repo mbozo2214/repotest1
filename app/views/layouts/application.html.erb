@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JoyasDeska</title>
+    <%= favicon_link_tag 'joya.ico' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= link_to 'JoyasDeska', root_path, class: 'navbar-item' %>
+      </div>
+
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <li><%= link_to 'Publicaciones', publicacions_path, class: 'navbar-item' %></li>
+        </div>
+        <div class="navbar-end">
+          <% if usuario_signed_in? %>
+            <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? || current_usuario.respond_to?(:vendedor?) && current_usuario.vendedor? %>
+              <li><%= link_to 'Solicitudes de Compra', solicitudes_compra_path, class: 'navbar-item' %></li>
+            <% else %>
+              <li><%= link_to 'Carrito', carrito_path_url, class: 'navbar-item' %></li>
+            <% end %>
+            <li><%= link_to 'Mi Perfil', perfil_opciones_path, class: 'navbar-item' %></li>
+            <li><%= button_to 'Cerrar SesiÃ³n', destroy_usuario_session_path, method: :delete, class: 'navbar-item button-to-cerrar-sesion' %></li>
+          <% else %>
+            <li><%= link_to 'Ingresar', new_usuario_session_path, class: 'navbar-item' %></li>
+            <li><%= link_to 'Registrarse', new_usuario_registration_path, class: 'navbar-item' %></li>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+
+    <% if flash[:notice] %>
+      <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <p class="alert"><%= flash[:alert] %></p>
+    <% end %>
+    
+    <%= yield %>
+  </body>
+
+  <footer>
+  <%= link_to "Chat con vendedores/soporte", chatrooms_path, class: "chat-button" %>
+  </footer>
+
+  <foot>
+    <title>JoyasDeska</title>
+    <%= favicon_link_tag 'joya.ico' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </foot>
+  
+</html>

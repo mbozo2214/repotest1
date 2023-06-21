@@ -1,0 +1,60 @@
+<%= stylesheet_link_tag 'register-new', media: 'all', 'data-turbolinks-track': 'reload' %>
+<h1 class="titulo has-text-centered is-size-1">Agregar Nueva Publicación</h1>
+<%= form_with(model: @publicacion, url: { action: "create" }, local: true) do |form| %>
+  <% if @publicacion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@publicacion.errors.count, "error") %> impidieron guardar esta publicación:</h2>
+
+      <ul>
+        <% @publicacion.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Nombre %><br>
+    <%= form.text_field :nombre, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :'Tipo de Joya' %><br>
+    <% tipos_disponibles = ['Anillo', 'Aro', 'Cadena', 'Collar', 'Colgante', 'Conjunto', 'Pulsera', 'Tobillera'] %>
+    <%= form.select :tipo_joya, options_for_select(tipos_disponibles), {},  include_blank: false, required: true %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :precio %><br>
+    <%= form.number_field :precio, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripción %><br>
+    <%= form.text_area :descripcion, rows: 5, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color %><br>
+    <%= form.text_field :color, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :imagen %><br>
+    <%= form.file_field :imagen, required: true %>
+  </div>
+
+  <%= form.hidden_field :vendedor, value: current_usuario.nombre_usuario %>
+
+  <div class="actions">
+    <%= button_tag(type: 'submit', class: 'button is-link') do %>
+      Crear
+    <% end %>
+  </div>
+<% end %>
+
+<br>
+
+<div class="links-container">
+  <%= link_to 'Regresar al Listado de Publicaciones', publicacions_path %>
+</div>

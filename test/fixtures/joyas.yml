@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cantidad: 5
+  estado: Vendido
+  fecha_compra: 2023-06-25
+  publicacion: one
+  usuario: admin1
+
+two:
+  cantidad: 6
+  estado: Vendido
+  fecha_compra: 2023-06-25
+  publicacion: one
+  usuario: admin1

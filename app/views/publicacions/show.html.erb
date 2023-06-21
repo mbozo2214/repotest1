@@ -1,0 +1,77 @@
+<%= stylesheet_link_tag 'publicacions-show', media: 'all', 'data-turbolinks-track': 'reload' %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div class="contenedor_publicacion">
+  <div class="contenedor_imagen">
+    <h2>
+      <%= image_tag @publicacion.imagen.url(:thumb), style: "min-width: 400px; min-height: 400px;" if @publicacion.imagen? %>
+    </h2>
+  </div>
+
+  <div class="contenedor_info">
+    <h1 class="titulo has-text-centered is-size-1"><%= @publicacion.nombre %></h1>
+    <h2 class="titulo has-text-centered is-size-2"> Proveedor: <%= @publicacion.vendedor %></h1>
+    <h2 class="titulo has-text-centered is-size-2"><%= @publicacion.tipo_joya %></h2>
+    <h2 class="titulo has-text-centered is-size-2">$<%= @publicacion.precio %></h2>
+    <h2 class="subtitulo has-text-centered is-size-2"><%= @publicacion.color %></h2>
+    <p class="descripcion"><%= @publicacion.descripcion %></p>
+
+    <div class="container-joyas">
+      <div class="box-joyas">
+        <div class="joyas-form">
+          <%= form_with(model: @joya, url: publicacion_joyas_path(@publicacion), local: true) do |form| %>
+            <%= form.number_field :cantidad, placeholder: "Cantidad", style: 'width: 100px; height: 37px;' %>
+            <%= form.hidden_field :estado, value: "No solicitado" %>
+            <%= form.hidden_field :usuario_id, value: current_usuario.id %>
+            <%= form.submit "Agregar al carrito", class: "button is-link" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="links-container">
+  <% if (current_usuario && current_usuario.admin?) || (current_usuario && (@publicacion.vendedor == current_usuario.nombre_usuario)) %>
+    <%= link_to 'Editar Publicación', edit_publicacion_path(@publicacion), class: "button is-link"%> <br>
+  <% end %>
+  <%= link_to 'Chatear con el Vendedor', new_chatroom_path(seller: @publicacion.vendedor, support: false), class: "button is-info"%> <br>
+  <%= link_to 'Regresar al Listado de Publicaciones', publicacions_path %>
+</div>
+
+
+<div class="container-comentarios">
+  <div class="box">
+    <h2 class="titulo has-text-centered is-size-4">Comentarios</h2>
+
+    <div class="comentario-form">
+      <%= form_with(model: @comentario, url: publicacion_comentarios_path(@publicacion), local: true) do |form| %>
+        <%= form.text_area :contenido, placeholder: "Agregar comentario" %>
+        <%= form.select :calificacion, (1..5).to_a, prompt: "Selecciona una calificación" %>
+        <%= form.hidden_field :usuario_id, value: current_usuario.id %>
+        <%= form.submit "Agregar comentario", class: "button is-link" %>
+      <% end %>
+    </div>
+    <% @comentarios.each do |comentario| %>
+      <div class="comentario">
+        <p class="comentario-info">
+          <strong>Calificación:</strong>
+          <%= render_star_rating(comentario.calificacion) %><br>
+          Autor: <%= (comentario.usuario).nombre_usuario %><br>
+          Fecha: <%= comentario.created_at.strftime("%d/%m/%Y") %>
+        </p>
+        <p class="comentario-contenido"><%= comentario.contenido %></p>
+
+        <% if comentario.usuario == current_usuario || (current_usuario && current_usuario.admin?) %>
+          <%= button_to "Eliminar comentario", [comentario.publicacion, comentario], method: :delete, data: { confirm: '¿Estás seguro?' }, class: "button is-danger is-light" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+

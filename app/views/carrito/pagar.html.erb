@@ -1,0 +1,46 @@
+<%= stylesheet_link_tag 'resumen-pago', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="resumen-container">
+  <h1 class="titulo has-text-centered is-size-1">Confirmación de Pago</h1>
+
+  <p>Tu pago ha sido procesado correctamente.</p>
+  <p>Los elementos del carrito han sido eliminados y las joyas han sido marcadas como vendidas.</p>
+
+  <h2 class="subtitulo has-text-centered is-size-3">Resumen de la compra</h2>
+
+  <table class="resumen-table">
+    <thead>
+      <tr>
+        <th>Joya</th>
+        <th>Cantidad</th>
+        <th>Precio unitario</th>
+        <th>Precio total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @precio_total = 0 %>
+      <% @joyas.each do |joya| %>
+        <% precio_total_producto = joya.cantidad * joya.publicacion.precio %>
+        <% if joya.estado == "Vendido" %>
+          <% @precio_total += precio_total_producto %>
+        <% end %>
+        <tr>
+          <td><%= joya.publicacion.nombre %></td>
+          <td><%= joya.cantidad %></td>
+          <td>$<%= joya.publicacion.precio %></td>
+          <td>$<%= precio_total_producto %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="3" class="has-text-right"><strong>Total:</strong></td>
+        <td>$<%= @precio_total %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="button-container">
+    <%= link_to 'Volver a las Publicaciones', publicacions_path, class: 'button is-link' %>
+  </div>
+
+  <p>¡Gracias por tu compra!</p>
+</div>

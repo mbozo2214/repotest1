@@ -1,0 +1,24 @@
+<% publicacion_id = params[:publicacion_id] %>
+<% @joya ||= Joya.new %>
+
+<h1>Crear Joya</h1>
+
+<%= form_for @joya, url: joya_path do |f| %>
+  <div>
+    <%= f.hidden_field :publicacion_id, value: @publicacion_id %>
+  </div>
+
+  <div>
+    <%= f.label :cantidad %>
+    <%= f.text_field :cantidad %>
+  </div>
+
+  <div>
+    <%= f.label :estado %>
+    <%= f.text_field :estado %>
+  </div>
+
+  <div>
+    <%= f.submit %>    
+  </div>
+<% end %>

@@ -1,0 +1,75 @@
+<%= stylesheet_link_tag 'chatrooms-index', media: 'all', 'data-turbolinks-track': 'reload' %>
+<section class="section">
+  <div class="container">
+    <h1 class="title">Conversaciones</h1>
+
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Motivo</th>
+          <th>Tipo</th>
+          <th>Remitente</th>
+          <th>Estado</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @chatrooms_creados.each do |chatroom| %>
+          <tr>
+            <td><%= chatroom.motivo %></td>
+            <% if chatroom.soporte %>
+              <td> Soporte </td>
+            <% else %>
+              <td> Ventas </td>
+            <% end %>
+            <td><%= chatroom.remitente %></td>
+            <td><%= chatroom.estado %></td>
+            <% if chatroom.estado == 'Abierto' && chatroom.soporte %>
+              <td><%= link_to 'Entrar', chatroom_path(chatroom), class: 'button is-info is-small' %></td>
+              <td><%= link_to 'Cerrar', edit_chatroom_path(chatroom), class: 'button is-link is-small' %></td> 
+            <% else %> 
+              <td><%= link_to 'Entrar', chatroom_path(chatroom), class: 'button is-info is-small' %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to 'Contactar al soporte', new_chatroom_path, class: 'button is-link' %>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">Conversaciones Entrantes</h1>
+
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Motivo</th>
+          <th>Tipo</th>
+          <th>Creador</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @chatrooms_entrantes.each do |chatroom| %>
+          <tr>
+            <td><%= chatroom.motivo %></td>
+            <% if chatroom.soporte %>
+              <td> Soporte </td>
+            <% else %>
+              <td> Ventas </td>
+            <% end %>
+            <td><%= chatroom.creador %></td>
+            <td><%= chatroom.estado %></td>
+            <td><%= link_to 'Entrar', chatroom_path(chatroom), class: 'button is-info is-small' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

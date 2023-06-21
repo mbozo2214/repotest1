@@ -1,0 +1,22 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+comentario1:
+  publicacion: one
+  usuario: admin1
+  contenido: GODDDD
+  calificacion: 5 
+  fecha: nil
+
+comentario2:
+  publicacion: one
+  usuario: user1
+  contenido: Bastante bueno pero...
+  calificacion: 4
+  fecha: nil
+
+comentario3:
+  publicacion: one
+  usuario: user2
+  contenido: Tuve un gran problema
+  calificacion: 1
+  fecha: nil

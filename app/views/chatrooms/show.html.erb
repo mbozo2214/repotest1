@@ -1,0 +1,41 @@
+<%= stylesheet_link_tag 'chatrooms-show', media: 'all', 'data-turbolinks-track': 'reload' %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<h1 class="titulo has-text-centered is-size-1"><%= @chatroom.motivo %></h1>
+<h1 class="titulo has-text-centered is-size-2"><%= @chatroom.estado %></h1>
+
+<div class="links-container">
+  <% if (((@chatroom.estado == 'Abierto') && current_usuario.admin?) || ((@chatroom.estado == 'Abierto') && (current_usuario.nombre_usuario == @chatroom.creador))) && (@chatroom.soporte) %>
+    <%= form_with(model: @chatroom, url: [@chatroom], method: :patch, local: true) do |form| %>
+      <%= form.submit 'Cerrar Conversación', class: 'button is-link' %>
+    <% end %>
+  <% end %>
+  <%= link_to 'Regresar al Listado de Conversaciones', chatrooms_path %>
+</div>
+<div class="container-comentarios">
+  <div class="box">
+    <% @mensajes.each do |mensaje| %>
+      <div class="comentario">
+        <p class="comentario-info">
+          Autor: <%= (mensaje.usuario).nombre_usuario %><br>
+          Fecha: <%= mensaje.created_at.strftime("%d/%m/%Y %H:%M") %>
+        </p>
+        <p class="comentario-contenido"><%= mensaje.body %></p>
+      </div>
+    <% end %>
+
+    <div class="comentario-form">
+      <% if @chatroom.estado == 'Abierto' %>
+        <%= form_with(model: @mensaje, url: chatroom_mensajes_path(@chatroom), local: true) do |form| %>
+          <%= form.text_area :body, placeholder: "Escribe aquí tu comentario" %>
+          <%= form.hidden_field :usuario_id, value: current_usuario.id %>
+          <%= form.submit "Enviar", class: "button is-link" %>
+        <% end %>
+      <% else %>
+        <%= content_tag(:strong,'Este chat no puede ser respondido ya que está cerrado') %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+

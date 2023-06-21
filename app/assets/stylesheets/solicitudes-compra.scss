@@ -1,0 +1,28 @@
+.solicitudes-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+.solicitudes-table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+.solicitudes-table th,
+  .solicitudes-table td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+.button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+.button-container .button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  

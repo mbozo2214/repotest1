@@ -1,0 +1,11 @@
+<%= stylesheet_link_tag 'opciones-perfil', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="container">
+  <h1>Opciones de perfil</h1>
+
+  <p>Elige una opción:</p>
+
+  <%= link_to 'Editar perfil', edit_usuario_registration_path, class: 'button-editar' %>
+
+  <%= link_to 'Ver joyas compradas', joyas_compradas_path, class: 'button-ver' %>
+</div>

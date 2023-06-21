@@ -1,0 +1,134 @@
+.titulo.has-text-centered.is-size-1 {
+  font-family: 'Lato';
+  margin-top: 10px;
+  font-weight: bold;
+  color: #4F86F7;
+}
+  
+.subtitulo.has-text-centered.is-size-3 {
+  font-family: 'Lato';
+  color: #4F86F7;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+  
+.subtitulo.has-text-centered.is-size-4 {
+  font-family: 'Lato';
+  color: #008080;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+  
+.subtitulo.has-text-centered.is-size-5 {
+  font-family: 'Lato';
+  color: #4F86F7;
+  margin-bottom: 10px;
+}
+  
+body {
+  background-color: #E6E6FA;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+  
+.descripcion {
+  text-align: center;
+  text-justify: distribute;
+}
+  
+.links-container {
+  text-align: center;
+}
+  
+.container-comentarios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #E6E6FA;
+}
+  
+.box {
+  max-width: 800px;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: #E6E6FA;
+  border-radius: 5px;
+}
+  
+.comentario {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #E6E6FA;
+  border-radius: 5px;
+}
+
+.comentario-info {
+  margin-bottom: 5px;
+  font-weight: bold;
+  background-color: #E6E6FA;
+}
+
+.comentario-contenido {
+  margin: 0;
+  background-color: #E6E6FA
+}
+
+.star-rating {
+  color: #8BC34A; /* Adjust the color as needed */
+}
+
+.comentario-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  background-color: #E6E6FA;
+}
+
+.container-joyas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E6E6FA;
+}
+
+.box-joyas {
+  max-width: 800px;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: #E6E6FA;
+  border-radius: 5px;
+}
+
+.joyas-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #E6E6FA;
+}
+
+.contenedor_publicacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+  margin-top: 50px;
+}
+  
+.conteneder_imagen {
+  float: left;
+  margin-right: 100px
+
+}
+
+.contenedor_info {
+  flex-direction: column;
+  margin-left: 300px
+}
+
+// .form_elemento {
+//   width: 100px;
+//   height: 100px;
+// }

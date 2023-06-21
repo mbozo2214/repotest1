@@ -1,0 +1,78 @@
+<%= stylesheet_link_tag 'carrito-index', media: 'all', 'data-turbolinks-track': 'reload' %>
+<h1 class="titulo has-text-centered is-size-1">Carrito</h1>
+
+<section class="section">
+  <div class="container">
+    <% if @joyas.any? %>
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th>Joya</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Precio total producto</th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% precio_total = 0 %>
+          <% @joyas.each do |joya| %>
+            <% precio_total_producto = joya.cantidad * joya.publicacion.precio %>
+            <% if joya.estado != "Rechazado" %>
+              <% precio_total += precio_total_producto %>
+            <% end %>
+            <tr>
+              <td><%= joya.publicacion.nombre %></td>
+              <td>
+                <% if joya.estado == "No solicitado" %>
+                  <%= form_with(model: joya, url: [joya.publicacion, joya], method: :patch, local: true) do |form| %>
+                  <%= form.number_field :cantidad, value: joya.cantidad, class: 'input', style: 'max-width: 100px;' %>
+                  <%= form.submit 'Actualizar', class: 'button is-link is-light' %>
+                  <% end %>
+                <% else %>
+                  <%= joya.cantidad %>
+                <% end %>
+              </td>
+              <td>$<%= joya.publicacion.precio %></td>
+              <td>$<%= precio_total_producto %></td>
+              <td><%= joya.estado %></td>
+              <td width="70" height="70"><%= image_tag joya.publicacion.imagen.url if joya.publicacion.imagen? %></td>
+              <td>
+                <%= button_to "Eliminar", [joya.publicacion, joya], method: :delete, data: { confirm: 'Estás seguro?' }, class: "button is-danger is-light" %>
+              </td>
+              <td>
+                <% if joya.estado == "No solicitado" %>
+                <%= button_to "Solicitar compra", solicitud_compra_joya_path(joya), method: :patch, class: "button is-primary is-light" %>
+                <% elsif joya.estado == "Aceptado"%>
+                <div class="aceptado-rectangulo">Aceptado</div>
+                <% elsif joya.estado == "Rechazado"%>
+                <div class="rechazado-rectangulo">Rechazado</div>
+                <% elsif joya.estado == "Pendiente"%>
+                <div class="solicitado-rectangulo">Solicitado</div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4" class="has-text-right"><strong>Total:</strong></td>
+            <td>$<%= precio_total %></td>
+            <td><%= link_to 'Generar PDF', generar_pdf_carrito_path(format: :pdf) %></td>
+          </tr>
+          <td>
+            <% if @joyas.any? { |joya| joya.estado != "Aceptado" && joya.estado != "Rechazado" } %>
+              <div class="mensaje-espera">
+                Debes esperar a que se resuelvan todas las solicitudes para pagar.
+              </div>
+            <% else %>
+              <%= button_to "Ir a pagar", pagar_path, method: :post, class: "button is-primary is-light" %>
+            <% end %>
+          </td>
+        </tfoot>
+      </table>
+    <% else %>
+      <h2 class="subtitulo has-text-centered is-size-3">Tu carrito está vacío!</h2>
+    <% end %>
+</div>
+</section>

@@ -1,0 +1,19 @@
+<h1>Joya Creada</h1>
+
+<%= button_to 'Eliminar Joya', eliminar_joya_creada_path(@joya), method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar la joya?' }, class: 'btn btn-danger' %>
+<%= form_for @joya, url: joya_creada_path(@joya) do |f| %>
+
+  <div>
+    <%= f.label :cantidad %>
+    <%= f.text_field :cantidad, value: @joya.cantidad %>
+  </div>
+
+  <div>
+    <%= f.label :estado %>
+    <%= f.text_field :estado, value: @joya.estado %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

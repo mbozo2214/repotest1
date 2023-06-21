@@ -1,0 +1,75 @@
+.field {
+  text-align: center;
+  label {
+    color: #4F86F7;
+    font-family: 'Lato';
+    font-size: 20px;
+
+  }
+}
+
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+  color: #000;
+}
+
+.actions {
+  text-align: center;
+}
+
+body {
+  background-color: #E6E6FA;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.titulo.has-text-centered.is-size-1 {
+  font-family: 'Lato';
+  margin-top: 10px;
+  font-weight: bold;
+  color: #4F86F7;
+}
+
+em {
+  color: #4F86F7;
+  font-family: 'Lato';
+  font-size: 15px;
+
+}
+
+i {
+  color: #4F86F7;
+  font-family: 'Lato';
+  font-size: 15px;
+  font-weight: bold;
+
+}
+
+.subtitulo.has-text-centered.is-size-3 {
+  font-family: 'Lato';
+  color: #4F86F7;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.subtitulo.has-text-centered.is-size-4 {
+  font-family: 'Lato';
+  color: #4F86F7;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.links-container {
+  text-align: center;
+}
+
+.eliminar {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  min-height: 100vh;
+}

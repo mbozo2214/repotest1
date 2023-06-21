@@ -1,0 +1,169 @@
+<%= stylesheet_link_tag 'solicitudes-compra', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="solicitudes-container">
+  <h1 class="titulo has-text-centered is-size-1">Solicitudes de Compra</h1>
+
+  <% if @solicitudes.any? %>
+    <table class="solicitudes-table">
+        <thead>
+          <tr>
+            <th>ID Solicitud</th>
+            <th>Joya</th>
+            <th>Estado</th>
+            <th>Cantidad</th>
+            <th>Comprador</th>
+            <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+              <th>Vendedor</th>
+            <% end %>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? || current_usuario.respond_to?(:vendedor?) && current_usuario.vendedor? %>
+          <% @solicitudes.each do |solicitud| %>
+              <tr>
+                <% if current_usuario.nombre == solicitud.publicacion.vendedor || current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+                  <td><%= solicitud.id %></td>
+                  <td><%= solicitud.publicacion.nombre %></td>
+                  <td><%= solicitud.estado %></td>
+                  <td><%= solicitud.cantidad %></td>
+                  <td><%= solicitud.usuario.nombre %></td>
+                    <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+                      <td><%= solicitud.publicacion.vendedor %></td>
+                    <% end %>
+                  <td>
+                    <div class="button-container">
+                      <%= button_to "Aceptar", aceptar_solicitud_joya_path(solicitud), method: :patch, class: "button is-success" %>
+                      <%= button_to "Rechazar", rechazar_solicitud_joya_path(solicitud), method: :patch, class: "button is-danger" %>
+                    </div>
+                  </td>
+                <% end %>  
+              </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No hay solicitudes de compra.</p>
+  <% end %>
+</div>
+
+<div class="solicitudes-container">
+  <h1 class="titulo has-text-centered is-size-1">Solicitudes aceptadas</h1>
+  <% if @aceptados.any? %>
+    <table class="solicitudes-table">
+        <thead>
+          <tr>
+            <th>ID Solicitud</th>
+            <th>Joya</th>
+            <th>Estado</th>
+            <th>Cantidad</th>
+            <th>Comprador</th>
+            <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+              <th>Vendedor</th>
+            <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? || current_usuario.respond_to?(:vendedor?) && current_usuario.vendedor? %>
+          <% @aceptados.each do |aceptado| %>
+              <tr>
+                <% if current_usuario.nombre == aceptado.publicacion.vendedor || current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+                  <td><%= aceptado.id %></td>
+                  <td><%= aceptado.publicacion.nombre %></td>
+                  <td><%= aceptado.estado %></td>
+                  <td><%= aceptado.cantidad %></td>
+                  <td><%= aceptado.usuario.nombre %></td>
+                    <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+                      <td><%= aceptado.publicacion.vendedor %></td>
+                    <% end %>
+                <% end %>  
+              </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No hay solicitudes aceptadas.</p>
+  <% end %>
+</div>
+
+<div class="solicitudes-container">
+  <h1 class="titulo has-text-centered is-size-1">Solicitudes rechazadas</h1>
+  <% if @rechazados.any? %>
+    <table class="solicitudes-table">
+        <thead>
+          <tr>
+            <th>ID Solicitud</th>
+            <th>Joya</th>
+            <th>Estado</th>
+            <th>Cantidad</th>
+            <th>Comprador</th>
+            <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+              <th>Vendedor</th>
+            <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? || current_usuario.respond_to?(:vendedor?) && current_usuario.vendedor? %>
+          <% @rechazados.each do |rechazado| %>
+              <tr>
+                <% if current_usuario.nombre == rechazado.publicacion.vendedor || current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+                  <td><%= rechazado.id %></td>
+                  <td><%= rechazado.publicacion.nombre %></td>
+                  <td><%= rechazado.estado %></td>
+                  <td><%= rechazado.cantidad %></td>
+                  <td><%= rechazado.usuario.nombre %></td>
+                    <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+                      <td><%= rechazado.publicacion.vendedor %></td>
+                    <% end %>
+                <% end %>  
+              </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No hay solicitudes rechazadas.</p>
+  <% end %>
+</div>
+
+<div class="solicitudes-container">
+  <h1 class="titulo has-text-centered is-size-1">Ventas</h1>
+  <% if @vendidos.any? %>
+    <table class="solicitudes-table">
+        <thead>
+          <tr>
+            <th>ID Solicitud</th>
+            <th>Joya</th>
+            <th>Estado</th>
+            <th>Cantidad</th>
+            <th>Comprador</th>
+            <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+              <th>Vendedor</th>
+            <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? || current_usuario.respond_to?(:vendedor?) && current_usuario.vendedor? %>
+          <% @vendidos.each do |vendido| %>
+              <tr>
+                <% if current_usuario.nombre == vendido.publicacion.vendedor || current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+                  <td><%= vendido.id %></td>
+                  <td><%= vendido.publicacion.nombre %></td>
+                  <td><%= vendido.estado %></td>
+                  <td><%= vendido.cantidad %></td>
+                  <td><%= vendido.usuario.nombre %></td>
+                    <% if current_usuario.respond_to?(:admin?) && current_usuario.admin? %>
+                      <td><%= vendido.publicacion.vendedor %></td>
+                    <% end %>
+                <% end %>  
+              </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No hay ventas.</p>
+  <% end %>
+</div>

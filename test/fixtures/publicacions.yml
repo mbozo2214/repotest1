@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vendedor: alex
+  nombre: Publicacion 1
+  tipo_joya: Aro
+  precio: 100
+  descripcion: descripcion 1
+  color: Red
+  imagen: image.png
+

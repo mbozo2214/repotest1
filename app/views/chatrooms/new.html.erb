@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag 'register-new', media: 'all', 'data-turbolinks-track': 'reload' %>
+<h1 class="titulo has-text-centered is-size-1">Crear Nueva Conversación</h1>
+<%= form_with(model: @chatroom, url: { action: "create" }, local: true) do |form| %>
+  <% if @chatroom.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chatroom.errors.count, "error") %> impidieron hacer esta sala de chat:</h2>
+
+      <ul>
+        <% @chatroom.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Motivo %><br>
+    <%= form.text_field :motivo, required: true %>
+  </div>
+  <%= form.hidden_field :soporte, value: @tipo_chat %>
+  <%= form.hidden_field :remitente, value: @user.nombre_usuario %>
+  <%= form.hidden_field :creador, value: current_usuario.nombre_usuario %>
+  <%= form.hidden_field :estado, value: 'Abierto' %>
+
+  <div class="actions">
+    <%= button_tag(type: 'submit', class: 'button is-link') do %>
+      Crear
+    <% end %>
+  </div>
+<% end %>
+
+<br>
+
+<div class="links-container">
+  <%= link_to 'Regresar a la Lista de Conversaciones', chatrooms_path %>
+</div>
