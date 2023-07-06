@@ -71,19 +71,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_010402) do
   end
 
   create_table "usuarios", force: :cascade do |t|
-    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "nombre", default: "", null: false
     t.string "nombre_usuario", default: "", null: false
-    t.string "telefono", default: "", null: false
     t.integer "tipo_usuario", default: 0
-    t.string "ruta_img", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 

@@ -8,13 +8,14 @@
         </div>
       
 
-        <% unless usuario_signed_in? %>
+        <% if usuario_signed_in? == false %>
             <div class="has-text-centered">
                 <%= link_to 'Registrarse', new_usuario_registration_path, class: 'button is-medium' %>
             </div>
             <div class="has-text-centered">
-                <%= link_to 'Iniciar Sesión', new_usuario_registration_path, class: 'button is-medium' %>
+                <%= link_to 'Iniciar Sesión', new_usuario_session_path, class: 'button is-medium' %>
             </div>
+        <% else %>
         <% end %>
     </div>
 </body>

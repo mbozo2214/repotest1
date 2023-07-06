@@ -5,22 +5,13 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :'Nueva Contraseña' %> <em>(puedes dejar en blanco si es que no deseas cambiarla)</em><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em>(Mínimo <%= @minimum_password_length %> caracteres)</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :'Confirmar Contraseña' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :'Contraseña Actual' %> <i>(DEBES rellenar este cambio para actualizar los cambios)</i><br />
+    <%= f.label :'Contraseña Actual' %> <i>(mustfill)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :'Nueva Contraseña' %> <em>(mustfill)</em><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
@@ -40,9 +31,4 @@
 <div class="eliminar">
   <%= button_to "Eliminar mi cuenta", registration_path(resource_name), data: { confirm: "Estás seguro?", turbo_confirm: "Estás seguro?" }, method: :delete, class: 'button is-danger' %>
 </div>
-
-<div class="links-container">
-  <%= link_to "Ir atrás", :back %>
-</div>
-
 

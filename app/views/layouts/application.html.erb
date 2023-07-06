@@ -14,8 +14,12 @@
         <div class="navbar-brand">
           <%= link_to 'Arboz', root_path, class: 'navbar-item' %>
           <div class="refresh-container">
-            <%= link_to image_tag('reload.ico', alt: 'Refresh', class: 'refresh-button'), onclick: 'location.reload();' %>
+            <%= link_to image_tag('user.ico', class: 'refresh-button'), perfil_opciones_path %>
+            
           </div>
+        </div>
+        <div class="refresh-container">
+          <%= link_to 'Solicitar Materiales', publicacions_path, class: 'navbar-item' %>
         </div>
         
       </div>

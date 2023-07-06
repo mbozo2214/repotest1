@@ -16,5 +16,5 @@ class Usuario < ApplicationRecord
   end
   # attribute :admin, :boolean, default: false
   # validates :admin, inclusion: { in: [true, false], message: "must be a boolean value" }
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable
 end
