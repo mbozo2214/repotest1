@@ -75,17 +75,19 @@
   border: none;
 }
 
-.chat-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px;
-  background-color: #FF6B6B;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
+.refresh-button {
+  max-width: 25px;
+  max-height: 25px;
 }
 
-.chat-button:hover {
-  background-color: #FF6B6B;
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.refresh-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

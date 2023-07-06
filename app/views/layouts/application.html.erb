@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JoyasDeska</title>
+    <title>Arboz Inventario</title>
     <%= favicon_link_tag 'joya.ico' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,8 +10,14 @@
   </head>
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <%= link_to 'JoyasDeska', root_path, class: 'navbar-item' %>
+      <div class="navbar-container">
+        <div class="navbar-brand">
+          <%= link_to 'Arboz', root_path, class: 'navbar-item' %>
+          <div class="refresh-container">
+            <%= link_to image_tag('reload.ico', alt: 'Refresh', class: 'refresh-button'), onclick: 'location.reload();' %>
+          </div>
+        </div>
+        
       </div>
 
       <div class="navbar-menu">
@@ -47,9 +53,6 @@
     <%= yield %>
   </body>
 
-  <footer>
-  <%= link_to "Chat con vendedores/soporte", chatrooms_path, class: "chat-button" %>
-  </footer>
 
   <foot>
     <title>JoyasDeska</title>

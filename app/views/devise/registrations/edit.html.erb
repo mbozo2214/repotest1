@@ -5,16 +5,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :'Contraseña' %> <em>(puedes dejar en blanco si es que no deseas cambiarla)</em><br />
+    <%= f.label :'Nueva Contraseña' %> <em>(puedes dejar en blanco si es que no deseas cambiarla)</em><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
@@ -35,18 +26,6 @@
   <div class="field">
     <%= f.label :'Nombre de Usuario' %><br />
     <%= f.text_field :nombre_usuario, autocomplete: "nombre_usuario" %>
-  </div>
-
-  <h2 class="subtitulo has-text-centered is-size-3">Información de Contacto</h2>
-
-  <div class="field">
-    <%= f.label :'Nombre' %><br />
-    <%= f.text_field :nombre %>
-  </div>
-
-  <div class="field">
-    <%= f.label :'Teléfono' %><br />
-    <%= f.text_field :telefono %>
   </div>
 
   <div class="actions">

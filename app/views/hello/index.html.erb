@@ -1,17 +1,19 @@
 <%= stylesheet_link_tag 'index', media: 'all', 'data-turbolinks-track': 'reload' %>
 <body>
     <div class="container">
-        <h1 class="titulo has-text-centered is-size-1">Joyas Deska</h1>
+        <h1 class="titulo has-text-centered is-size-1">Inventario Arboz</h1>
       
         <div class="has-text-centered">
             <%= image_tag('diamante.png', alt: 'Diamond Image', class: 'diamond-image') %>
         </div>
       
-        <h2 class="subtitulo has-text-centered is-size-3">Las mejores joyas del universo</h2>
 
         <% unless usuario_signed_in? %>
             <div class="has-text-centered">
-                <%= link_to 'Únete y ve nuestro catálogo!', new_usuario_registration_path, class: 'button is-large' %>
+                <%= link_to 'Registrarse', new_usuario_registration_path, class: 'button is-medium' %>
+            </div>
+            <div class="has-text-centered">
+                <%= link_to 'Iniciar Sesión', new_usuario_registration_path, class: 'button is-medium' %>
             </div>
         <% end %>
     </div>
