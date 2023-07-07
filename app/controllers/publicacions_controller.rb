@@ -76,7 +76,7 @@ class PublicacionsController < ApplicationController
   private
       
   def publicacion_params
-    params.require(:publicacion).permit(:vendedor, :nombre, :tipo_joya, :precio, :descripcion, :color, :imagen)
+    params.require(:publicacion).permit(:codigo, :nombre, :categoria, :precio, :descripcion, :unidad, :imagen)
   end
 
 end

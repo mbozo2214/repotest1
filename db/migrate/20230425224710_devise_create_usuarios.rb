@@ -13,7 +13,6 @@ class DeviseCreateUsuarios < ActiveRecord::Migration[7.0]
       ## Rememberable
       t.datetime :remember_created_at
 
-      t.string :nombre,              null: false, default: ""
       t.string :nombre_usuario,              null: false, default: ""
       t.integer :tipo_usuario, default: 0
       # t.boolean :admin,              null: false, default: false

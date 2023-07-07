@@ -15,8 +15,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :'Nombre de Usuario' %><br />
-    <%= f.text_field :nombre_usuario, autocomplete: "nombre_usuario" %>
+    <%= f.label :"Nombre de Usuario: #{current_usuario.nombre_usuario}"  %><br />
+    <%= f.hidden_field :nombre_usuario, autocomplete: "nombre_usuario" %>
   </div>
 
   <div class="actions">

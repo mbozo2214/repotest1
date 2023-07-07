@@ -11,17 +11,14 @@
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-container">
-        <div class="navbar-brand">
-          <%= link_to 'Arboz', root_path, class: 'navbar-item' %>
-          <div class="refresh-container">
-            <%= link_to image_tag('user.ico', class: 'refresh-button'), perfil_opciones_path %>
-            
-          </div>
+        <%= link_to image_tag('logo.ico', class: 'refresh-button'), root_path %>
+        <div class="refresh-container">
+          <%= link_to image_tag('user.ico', class: 'refresh-button'), perfil_opciones_path %>
+          <%= link_to 'Lista de Materiales', publicacions_path, class: 'navbar-item' %>
         </div>
         <div class="refresh-container">
-          <%= link_to 'Solicitar Materiales', publicacions_path, class: 'navbar-item' %>
+          <%= link_to 'Solicitar Materiales', carrito_path_url, class: 'navbar-item' %>
         </div>
-        
       </div>
 
       <div class="navbar-menu">
@@ -58,7 +55,9 @@
   </body>
 
   <footer>
-    <%= link_to "Chat con vendedores/soporte", chatrooms_path, class: "chat-button" %>
+    <% if usuario_signed_in? %>
+      <%= button_to 'Cerrar sesión', destroy_usuario_session_path, method: :delete, class: "chat-button" %>
+    <% end %>
   </footer>
   <foot>
     <title>JoyasDeska</title>

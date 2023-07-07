@@ -1,17 +1,14 @@
 <%= stylesheet_link_tag 'publicacions-index', media: 'all', 'data-turbolinks-track': 'reload' %>
 <section class="section">
   <div class="container">
-    <h1 class="title">Listado de Publicaciones</h1>
+    <h1 class="title">Materiales</h1>
 
     <table class="table is-fullwidth">
       <thead>
         <tr>
-          <th>Vendedor</th>
+          <th>Código</th>
           <th>Nombre</th>
-          <th>Tipo de Joya</th>
-          <th>Precio</th>
-          <th>Descripción</th>
-          <th>Color</th>
+          <th>Categoría</th>
           <th colspan="4"></th>
         </tr>
       </thead>
@@ -19,14 +16,11 @@
       <tbody>
         <% @publicacions.each do |publicacion| %>
           <tr>
-            <td><%= publicacion.vendedor %></td>
+            <td><%= publicacion.codigo %></td>
             <td><%= publicacion.nombre %></td>
-            <td><%= publicacion.tipo_joya %></td>
-            <td><%= publicacion.precio %></td>
-            <td><%= publicacion.descripcion %></td>
-            <td><%= publicacion.color %></td>
+            <td><%= publicacion.categoria %></td>
             <td width="70" height="70"><%= image_tag publicacion.imagen.url(:thumb) if publicacion.imagen? %></td>
-            <% if (current_usuario && current_usuario.admin?) || (publicacion.vendedor == current_usuario.nombre_usuario) %>
+            <% if (current_usuario && current_usuario.admin?) %>
               <td><%= link_to 'Editar', edit_publicacion_path(publicacion), class: 'button is-link is-small' %></td>
               <td><%= link_to 'Eliminar', eliminar_publicacion_path(publicacion), method: :delete, data: { confirm: '¿Estás seguro que deseas eliminar esta publicación?' }, class: 'button is-danger is-small' %></td>
               <td><%= link_to 'Ver', publicacion_path(publicacion), class: 'button is-info is-small' %></td>
@@ -41,7 +35,7 @@
     </table>
 
     <% if (current_usuario && current_usuario.admin?) || (current_usuario && current_usuario.vendedor?) %>
-      <%= link_to 'Agregar Nueva Publicación', new_publicacion_path, class: 'button is-link' %>
+      <%= link_to 'Agregar material', new_publicacion_path, class: 'button is-link' %>
     <% end %>
   </div>
 </section>

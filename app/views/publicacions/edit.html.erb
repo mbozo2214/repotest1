@@ -13,16 +13,22 @@
     </div>
   <% end %>
 
+ <div class="field">
+    <%= form.label :Codigo %><br>
+    <%= form.text_field :codigo, required: true %>
+  </div>
+
   <div class="field">
-    <%= form.label :Nombre %><br>
+    <%= form.label :nombre %><br>
     <%= form.text_field :nombre, required: true %>
   </div>
 
   <div class="field">
-    <%= form.label :'Tipo de Joya' %><br>
-    <%= form.text_field :tipo_joya, required: true %>
+    <%= form.label :'Categoría' %><br>
+    <% tipos_disponibles = ['a', 'b', 'c'] %>
+    <%= form.select :categoria, options_for_select(tipos_disponibles), {},  include_blank: false, required: true %>
   </div>
-
+  
   <div class="field">
     <%= form.label :precio %><br>
     <%= form.number_field :precio, required: true %>
@@ -34,8 +40,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :color %><br>
-    <%= form.text_field :color, required: true %>
+    <%= form.label :'Unidad de Medida' %><br>
+    <%= form.text_field :unidad, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :imagen %><br>
+    <%= form.file_field :imagen, required: true %>
   </div>
 
   <div class="actions">

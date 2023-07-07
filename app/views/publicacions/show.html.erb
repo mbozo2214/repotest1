@@ -10,20 +10,23 @@
 
   <div class="contenedor_info">
     <h1 class="titulo has-text-centered is-size-1"><%= @publicacion.nombre %></h1>
-    <h2 class="titulo has-text-centered is-size-2"> Proveedor: <%= @publicacion.vendedor %></h1>
-    <h2 class="titulo has-text-centered is-size-2"><%= @publicacion.tipo_joya %></h2>
+    <h2 class="titulo has-text-centered is-size-2"><%= @publicacion.codigo %></h1>
+    <h2 class="titulo has-text-centered is-size-2"><%= @publicacion.categoria %></h2>
     <h2 class="titulo has-text-centered is-size-2">$<%= @publicacion.precio %></h2>
-    <h2 class="subtitulo has-text-centered is-size-2"><%= @publicacion.color %></h2>
     <p class="descripcion"><%= @publicacion.descripcion %></p>
 
     <div class="container-joyas">
       <div class="box-joyas">
         <div class="joyas-form">
           <%= form_with(model: @joya, url: publicacion_joyas_path(@publicacion), local: true) do |form| %>
-            <%= form.number_field :cantidad, placeholder: "Cantidad", style: 'width: 100px; height: 37px;' %>
+            <%= form.number_field :cantidad, placeholder: "Cantidad", style: 'width: 100px; height: 37px;' %> <%= @publicacion.unidad %> <br>
             <%= form.hidden_field :estado, value: "No solicitado" %>
-            <%= form.hidden_field :usuario_id, value: current_usuario.id %>
-            <%= form.submit "Agregar al carrito", class: "button is-link" %>
+            <%= form.hidden_field :usuario_id, value: current_usuario.id %> 
+            <% if current_usuario.joyas.none? { |joya| joya.publicacion.nombre == @publicacion.nombre } %>
+              <%= form.submit "Solicitar Material", class: "button is-link" %>
+            <% else %> 
+              <h3 class="titulo has-text-centered is-size-2"> Ya agregaste este material</h2>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -35,10 +38,9 @@
 
 
 <div class="links-container">
-  <% if (current_usuario && current_usuario.admin?) || (current_usuario && (@publicacion.vendedor == current_usuario.nombre_usuario)) %>
+  <% if (current_usuario && current_usuario.admin?)  %>
     <%= link_to 'Editar Publicación', edit_publicacion_path(@publicacion), class: "button is-link"%> <br>
   <% end %>
-  <%= link_to 'Chatear con el Vendedor', new_chatroom_path(seller: @publicacion.vendedor, support: false), class: "button is-info"%> <br>
   <%= link_to 'Regresar al Listado de Publicaciones', publicacions_path %>
 </div>
 

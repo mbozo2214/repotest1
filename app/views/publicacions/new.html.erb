@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag 'register-new', media: 'all', 'data-turbolinks-track': 'reload' %>
-<h1 class="titulo has-text-centered is-size-1">Agregar Nueva Publicación</h1>
+<h1 class="titulo has-text-centered is-size-1">Nuevo material</h1>
 <%= form_with(model: @publicacion, url: { action: "create" }, local: true) do |form| %>
   <% if @publicacion.errors.any? %>
     <div id="error_explanation">
@@ -14,14 +14,19 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :Nombre %><br>
+    <%= form.label :Codigo %><br>
+    <%= form.text_field :codigo, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre %><br>
     <%= form.text_field :nombre, required: true %>
   </div>
 
   <div class="field">
-    <%= form.label :'Tipo de Joya' %><br>
-    <% tipos_disponibles = ['Anillo', 'Aro', 'Cadena', 'Collar', 'Colgante', 'Conjunto', 'Pulsera', 'Tobillera'] %>
-    <%= form.select :tipo_joya, options_for_select(tipos_disponibles), {},  include_blank: false, required: true %>
+    <%= form.label :'Categoría' %><br>
+    <% tipos_disponibles = ['a', 'b', 'c'] %>
+    <%= form.select :categoria, options_for_select(tipos_disponibles), {},  include_blank: false, required: true %>
   </div>
   
   <div class="field">
@@ -35,8 +40,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :color %><br>
-    <%= form.text_field :color, required: true %>
+    <%= form.label :'Unidad de Medida' %><br>
+    <%= form.text_field :unidad, required: true %>
   </div>
 
   <div class="field">
@@ -44,7 +49,6 @@
     <%= form.file_field :imagen, required: true %>
   </div>
 
-  <%= form.hidden_field :vendedor, value: current_usuario.nombre_usuario %>
 
   <div class="actions">
     <%= button_tag(type: 'submit', class: 'button is-link') do %>

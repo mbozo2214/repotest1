@@ -59,12 +59,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_010402) do
   end
 
   create_table "publicacions", force: :cascade do |t|
-    t.string "vendedor"
+    t.string "codigo"
     t.string "nombre"
-    t.string "tipo_joya"
+    t.string "categoria"
     t.integer "precio"
     t.text "descripcion"
-    t.string "color"
+    t.string "unidad"
     t.string "imagen"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -75,7 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_010402) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "nombre", default: "", null: false
     t.string "nombre_usuario", default: "", null: false
     t.integer "tipo_usuario", default: 0
     t.datetime "created_at", null: false

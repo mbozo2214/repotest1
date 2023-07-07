@@ -8,13 +8,19 @@ class Usuario < ApplicationRecord
   has_many :joyas, dependent: :destroy
   has_many :comentarios, through: :publicacions
   validates :nombre_usuario, :password, presence: true
-  # validates :nombre_usuario, :email, uniqueness: { message: "already exists" }
+  validates :nombre_usuario, uniqueness: true
   enum tipo_usuario: { normal: 0, vendedor: 1, admin: 2 }
   def tipo_usuario=(value)
     value = value.to_i if value.present?
     super(value)
   end
+  def email_required? 
+    false 
+  end
+  def email_changed? 
+    false 
+  end 
   # attribute :admin, :boolean, default: false
   # validates :admin, inclusion: { in: [true, false], message: "must be a boolean value" }
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :authentication_keys => [:nombre_usuario]
 end
