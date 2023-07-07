@@ -66,7 +66,8 @@ class Usuarios::RegistrationsController < Devise::RegistrationsController
   end
 
   def joyas_compradas
-    @joyas_compradas = current_usuario.joyas.where(estado: "Vendido")
+    @usuario = current_usuario
+    @ordenes = @usuario.lists.includes(:joyas)
   end
 
 end

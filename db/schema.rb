@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_26_010402) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_07_190725) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_010402) do
     t.index ["usuario_id"], name: "index_joyas_on_usuario_id"
   end
 
+  create_table "lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "mensajes", force: :cascade do |t|
     t.string "body", null: false
     t.bigint "usuario_id", null: false
@@ -65,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_010402) do
     t.integer "precio"
     t.text "descripcion"
     t.string "unidad"
+    t.integer "stock"
     t.string "imagen"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

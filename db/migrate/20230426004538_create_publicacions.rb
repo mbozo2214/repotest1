@@ -7,6 +7,7 @@ class CreatePublicacions < ActiveRecord::Migration[7.0]
       t.integer :precio
       t.text :descripcion
       t.string :unidad
+      t.integer :stock
       t.string :imagen
 
       t.timestamps

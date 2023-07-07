@@ -6,6 +6,7 @@ class Usuario < ApplicationRecord
   has_many :mensajes, dependent: :destroy
   has_many :chatrooms, through: :mensajes
   has_many :joyas, dependent: :destroy
+  has_many :lists, dependent: :destroy
   has_many :comentarios, through: :publicacions
   validates :nombre_usuario, :password, presence: true
   validates :nombre_usuario, uniqueness: true

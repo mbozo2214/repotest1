@@ -49,6 +49,11 @@
     <%= form.file_field :imagen, required: true %>
   </div>
 
+  <div class="field">
+    <%= form.label :'Stock Inicial' %><br>
+    <%= form.number_field :stock, required: true %>
+  </div>
+
 
   <div class="actions">
     <%= button_tag(type: 'submit', class: 'button is-link') do %>

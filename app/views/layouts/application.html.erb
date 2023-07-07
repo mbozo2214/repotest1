@@ -12,13 +12,9 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-container">
         <%= link_to image_tag('logo.ico', class: 'refresh-button'), root_path %>
-        <div class="refresh-container">
-          <%= link_to image_tag('user.ico', class: 'refresh-button'), perfil_opciones_path %>
-          <%= link_to 'Lista de Materiales', publicacions_path, class: 'navbar-item' %>
-        </div>
-        <div class="refresh-container">
-          <%= link_to 'Solicitar Materiales', carrito_path_url, class: 'navbar-item' %>
-        </div>
+        <%= link_to image_tag('user.ico', class: 'refresh-button'), perfil_opciones_path %>
+        <%= link_to 'Lista de Materiales', publicacions_path, class: 'navbar-item' %>
+        <%= link_to 'Solicitar Materiales', carrito_path_url, class: 'navbar-item' %>
       </div>
 
       <div class="navbar-menu">

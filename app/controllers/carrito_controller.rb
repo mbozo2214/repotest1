@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require "prawn"
 class CarritoController < ApplicationController
   before_action :set_publicacion, only: [:create, :destroy]
   def index
@@ -12,6 +11,10 @@ class CarritoController < ApplicationController
 
   def pagar
     @joyas = current_usuario.joyas
+    @user = current_usuario
+
+    @list = List.create(usuario_id: @usuario.id)
+    @joyas.update(list_id: @list.id)
     @joyas.where(estado: "Aceptado").update_all(estado: "Vendido")
     @joyas.where(estado: "Rechazado").destroy_all
     render("pagar")

@@ -7,7 +7,7 @@
       <table class="table is-fullwidth">
         <thead>
           <tr>
-            <th>Joya</th>
+            <th>Material</th>
             <th>Cantidad</th>
             <th colspan="4"></th>
           </tr>
@@ -20,21 +20,19 @@
               <td>
                 <% if joya.estado == "No solicitado" %>
                   <%= form_with(model: joya, url: [joya.publicacion, joya], method: :patch, local: true) do |form| %>
-                  <%= form.number_field :cantidad, value: joya.cantidad, class: 'input', style: 'max-width: 100px;' %>
-                  <%= form.submit 'Actualizar', class: 'button is-link is-light' %>
+                  <%= form.number_field :cantidad, value: joya.cantidad, class: 'input', style: 'max-width: 50px;' %> <%= joya.publicacion.unidad %> <br>
+                  <%= form.submit 'A', class: 'button is-link is-light' %>
                   <% end %>
                 <% else %>
-                  <%= joya.cantidad %>
+                  <%= joya.cantidad %> <%= joya.publicacion.unidad %>
                 <% end %>
               </td>
-              <td><%= joya.estado %></td>
-              <td width="70" height="70"><%= image_tag joya.publicacion.imagen.url if joya.publicacion.imagen? %></td>
               <td>
-                <%= button_to "Eliminar", [joya.publicacion, joya], method: :delete, data: { confirm: 'Estás seguro?' }, class: "button is-danger is-light" %>
+                <%= button_to "E", [joya.publicacion, joya], method: :delete, data: { confirm: 'Estás seguro?' }, class: "button is-danger is-light" %>
               </td>
               <td>
                 <% if joya.estado == "No solicitado" %>
-                <%= button_to "Solicitar material", solicitud_compra_joya_path(joya), method: :patch, class: "button is-primary is-light" %>
+                <%= button_to "SM", solicitud_compra_joya_path(joya), method: :patch, class: "button is-primary is-light" %>
                 <% elsif joya.estado == "Aceptado"%>
                 <div class="aceptado-rectangulo">Aceptado</div>
                 <% elsif joya.estado == "Rechazado"%>

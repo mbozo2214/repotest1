@@ -1,28 +1,17 @@
 <%= stylesheet_link_tag 'joyas-compradas', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<h1 class="titulo has-text-centered is-size-1">Joyas Compradas</h1>
 
-<% if @joyas_compradas.any? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Joya</th>
-        <th>Cantidad</th>
-        <th>Precio unitario</th>
-        <th>Precio total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @joyas_compradas.each do |joya| %>
-        <tr>
-          <td><%= joya.publicacion.nombre %></td>
-          <td><%= joya.cantidad %></td>
-          <td>$<%= joya.publicacion.precio %></td>
-          <td>$<%= joya.cantidad * joya.publicacion.precio %></td>
-        </tr>
+<h1 class="titulo has-text-centered is-size-1">Estado de Ordenes</h1>
+
+<% @ordenes.each do |orden| %>
+  <div class="orden">
+    <h2>Orden ID: <%= orden.id %></h2>
+    <h3>Fecha de Creación: <%= orden.created_at.strftime("%d/%m/%Y") %></h3>
+    
+    <ul>
+      <% orden.joyas.each do |joya| %>
+        <li><%= joya.publicacion.nombre %> - <%= joya.estado %></li>
       <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>No has comprado ninguna joya.</p>
+    </ul>
+  </div>
 <% end %>

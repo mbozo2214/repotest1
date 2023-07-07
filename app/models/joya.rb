@@ -2,6 +2,7 @@
 class Joya < ApplicationRecord
   belongs_to :publicacion
   belongs_to :usuario
+  belongs_to :list, optional: true
   validates :cantidad, :estado, presence: true
   validates :cantidad, numericality: {only_integer: true, message: "is not an integer" }
   validates :cantidad, 
